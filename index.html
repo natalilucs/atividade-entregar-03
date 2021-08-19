@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="text/javascript" src="./jquery-js/jquery-3.6.0.min.js"></script>
+    <title> Posicionamento/ Scroll / Dimensionamento</title>
+
+    <style>
+        *{
+            margin:0;
+            padding: 0;
+            box-sizing: 0;
+        }
+
+        #menu ul li{
+            margin-top: 0px;
+            display: inline-block;            
+            list-style: none;    
+            background-color: yellow; 
+        }
+
+        #menu{
+            align-items: center;            
+            background-color: lime;
+            text-decoration:none;
+
+        }
+
+        nav{
+            display: flex;
+            justify-content: center;
+        }
+
+        #section{
+            background-color: rgb(199, 164, 175);
+            border: solid 3px rgb(189, 194, 201);
+        }
+
+        #conteudo-principal{
+            background-color: palevioletred;
+            border: solid 3px lightsteelblue;
+        }
+
+        #rolling{
+            background-color: aquamarine;
+            border: solid 3px yellow;
+            overflow: scroll;
+            width: 40%;
+            height: 20vh;
+        }
+        #rolagem{
+            width: 10%;
+            height: 5vh;
+        }
+
+
+ 
+
+    </style>
+</head>
+<body>
+
+    <!-- Crie uma pagina com os seguintes requisitos:
+    1- Deve existir um menu horizontal que ao redimensionar a janela do navegador o menu irá sumir.
+    2- Crie um elemento html(paragrafo, imagem, div...) posicione-o e retorne em um alert a posição deste elemento com a função position e com o offset;
+    3- Você deve criar uma box com um texto que contenha scroll e um ao clicar no botão irá retornar a posição em que o scroll está. Você escolhe se vai usar o scrollTop ou scrollLeft.
+
+    Você deve complementar esta página com o que se pede no exercício em anexo. -->
+
+    <header>
+        <nav id="menu">
+            <ul>
+                <li><a href="#">CONTEUDO  0</a></li>
+                <li><a href="#">CONTEUDO  1</a></li>
+                <li><a href="#">CONTEUDO  2</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <div id=conteudo-principal>
+            <h1>ESSE CONTEUDO</h1>
+            <article>
+                <p> Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo excepturi alias quibusdam voluptate earum, provident itaque, numquam iste eligendi aut esse impedit harum animi temporibus debitis, iusto minima saepe voluptas dignissimos voluptates? Eveniet quos inventore ab laborum modi ea sunt fugit facere, accusantium ex voluptatem possimus delectus minima enim animi nam ut. Quis molestiae dolor, deserunt a deleniti iste, dicta sapiente possimus sed quibusdam odio explicabo cumque, porro veritatis distinctio? Aliquid ex molestiae saepe vero optio quasi distinctio eos animi tenetur recusandae debitis est ullam aperiam dignissimos commodi esse aliquam sed porro fugit minus cum, illum cumque laboriosam numquam! Est sint et quis dignissimos distinctio! Commodi dolor tempore cumque minima. </p>
+            </article>
+        </div>
+    
+        <div id="section">
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur, unde, voluptatem excepturi inventore rem quidem facere quisquam architecto voluptatum iure quam dolores quis deserunt incidunt temporibus aspernatur exercitationem earum dolorem? Autem molestiae voluptatibus eligendi possimus excepturi assumenda nisi? Natus voluptate qui, quisquam hic temporibus doloribus quidem enim aperiam? Laborum dicta distinctio nam corrupti vero doloribus commodi, voluptate in quisquam officiis ea unde! Exercitationem temporibus similique veniam nemo corrupti! Velit quae corporis ipsum cupiditate, ex impedit dignissimos quidem hic nesciunt corrupti? Quos nemo ducimus qui voluptates. Quas quia tenetur aut cumque quam odio perferendis, libero tempore necessitatibus expedita recusandae mollitia incidunt?</p>
+            
+        </div>
+
+        <div id="rolling">
+            <p> Lorem ipsum dolor sit amet consectetur adipisicing elit. Nesciunt illo repellat modi omnis laboriosam sed, ex architecto veritatis! Nemo, doloremque. Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi qui quidem exercitationem animi assumenda tempora debitis incidunt, eum delectus ab, fugiat quibusdam doloremque, maxime veniam deserunt iste quos natus fuga expedita maiores minus tempore illum dolore ullam? Aliquid, deleniti nihil eligendi officiis facere incidunt id quam odio reprehenderit voluptatibus culpa et consequuntur iste consequatur quaerat aperiam, similique esse dolorum blanditiis pariatur eos sunt ex temporibus. Ipsum voluptate accusantium cumque nihil itaque. Dicta iste placeat autem accusamus nam tempore praesentium et optio exercitationem velit, earum vitae vel architecto, tempora in repellendus iusto incidunt officia molestias iure. Dolores quo eaque earum quae.</p>
+        </div>
+        <button id="rolagem">Rolling</button>
+    
+
+    </main> 
+    
+
+
+
+    <script type="text/javascript">
+        window.addEventListener('resize', function (){
+            var tam = $(window).width();
+            if (tam >= 1024) {
+                $("#menu").show();
+            } else {
+                $("#menu").fadeOut(5000);
+            }
+        });
+
+        $(document).ready(function(){
+            $("#rolling").scroll( function() { 
+            var role= $(document).scrollTop();
+            console.log(role);
+            });
+        })
+
+        $(document).ready(function(){            
+            var posicaop = $("article").position();
+            alert(" A posição do artigo é left: " + posicaop.left + ", e top: " + posicaop.top);
+        });
+
+        $(document).ready(function(){            
+            var posicaoof = $("article").offset();
+            alert("A posição do artigo é left: " + posicaoof.left + ", e top: " + posicaoof.top);
+        });
+
+        //1-
+
+        $("#section").width(500).height(500);
+
+        //2 - 
+
+        $("#section").height();
+
+        //3- 
+
+        $("#section").innerHeight();
+
+
+
+            // --------------------------------------desconsiderar----------------------------------------------
+        // $(document).ready(function(){
+        //     var artigo = $("article").html();
+        //     var position = artigo.position();
+        //     alert($("artigo").first().text("left: " + position.left + ", top: " + position.top));
+        // });
+        
+
+
+        // var x = 0;
+        // $(document).ready(function(){
+        //     $("#rolagem").scroll(function(){
+        //         $("p").text(x++);
+        //     });
+        // });
+
+        // console.log(x);
+
+        // var x = 0;
+        // $(document).ready(function(){
+        //     $("#rolling").on().scroll(function(){
+        //        $("p").text(x+=1);
+        //     }); 
+        // });
+
+        // console.log(x);
+
+
+        // window.onload = function(){
+        //     var artigo = $("article").first();
+        //     var position = artigo.position();
+        // alert($("article").last().text("left: " + position.left + ", top: " + position.top))}
+
+      //1- 
+      
+
+
+    </script>
+    
+</body>
+</html>
